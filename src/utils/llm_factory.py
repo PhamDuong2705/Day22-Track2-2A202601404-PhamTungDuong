@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 import config
 
 
-def get_llm(provider: str = None, temperature: float = 0.0):
+def get_llm(provider: str = None, temperature: float = 0.0, *, evaluation: bool = False):
     """
     Trả về BaseChatModel tương ứng với provider được chọn.
 
@@ -64,9 +64,16 @@ def get_llm(provider: str = None, temperature: float = 0.0):
     elif provider == "ollama":
         from langchain_ollama import ChatOllama
         return ChatOllama(
-            model=config.OLLAMA_MODEL,
+            model=config.OLLAMA_EVAL_MODEL if evaluation else config.OLLAMA_MODEL,
             base_url=config.OLLAMA_BASE_URL,
             temperature=temperature,
+            # Qwen3 enables a long internal thinking phase by default.  The lab
+            # only needs short grounded answers, so disabling it makes the 50+
+            # question evaluation runs practical on a laptop GPU.
+            reasoning=False,
+            num_ctx=4096 if evaluation else 3072,
+            num_predict=1024 if evaluation else 384,
+            keep_alive="5m",
         )
 
     elif provider == "openrouter":

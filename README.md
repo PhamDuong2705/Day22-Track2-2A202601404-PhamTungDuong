@@ -246,7 +246,7 @@ Nộp URL GitHub repository và URL LangSmith project của bạn qua cổng n�
 ## Tips và lưu ý
 
 **LangSmith tracing — đặt biến môi trường đúng thứ tự:**
-Các biến `LANGCHAIN_TRACING_V2`, `LANGSMITH_API_KEY`, và `LANGSMITH_PROJECT` phải được đặt **trước khi import bất kỳ thứ gì từ LangChain**. Nếu import trước khi đặt biến, tracing sẽ không hoạt động.
+Các biến `LANGCHAIN_TRACING_V2`, `LANGSMITH_API_KEY`, và `LANGSMITH_PROJECT` phải được đặt **trước khi import bất kỳ thứ gì từ LangChain**. Nếu import trước khi đặt biến, tracing sẽ không hoạt động. `config.py` cũng ánh xạ các tên `LANGCHAIN_API_KEY`/`LANGCHAIN_PROJECT` cũ để tương thích.
 
 ```python
 import os

@@ -5,7 +5,7 @@ Cách dùng:
     from utils.data_loader import load_knowledge_base, split_text, build_vectorstore
 
     text        = load_knowledge_base()
-    chunks      = split_text(text, chunk_size=500, chunk_overlap=50)
+    chunks      = split_text(text, chunk_size=575, chunk_overlap=50)
     vectorstore = build_vectorstore(chunks, embeddings)
 """
 from pathlib import Path
@@ -27,7 +27,7 @@ def load_knowledge_base(path: str = None) -> str:
     return Path(path).read_text(encoding="utf-8")
 
 
-def split_text(text: str, chunk_size: int = 500, chunk_overlap: int = 50) -> list:
+def split_text(text: str, chunk_size: int = 575, chunk_overlap: int = 50) -> list:
     """
     Chia văn bản thành các đoạn nhỏ (chunks) để index.
 
@@ -35,7 +35,7 @@ def split_text(text: str, chunk_size: int = 500, chunk_overlap: int = 50) -> lis
 
     Args:
         text         : văn bản cần chia
-        chunk_size   : số ký tự tối đa mỗi chunk (mặc định: 500)
+        chunk_size   : số ký tự tối đa mỗi chunk (mặc định: 575, giữ dưới quota 100 embedding/phút)
         chunk_overlap: số ký tự chồng lên nhau giữa 2 chunks liên tiếp (mặc định: 50)
 
     Returns:

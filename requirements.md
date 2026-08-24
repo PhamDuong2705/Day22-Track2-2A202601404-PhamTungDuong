@@ -15,7 +15,7 @@ pip install -r requirements.txt
 langchain>=0.3.0
 langchain-core>=0.3.0
 langchain-openai>=0.3.0
-langchain-community>=0.3.0
+langchain-community>=0.3.0,<0.4.0
 langchain-text-splitters>=0.3.0
 langsmith>=0.2.0
 openai>=1.0.0
@@ -81,6 +81,6 @@ Expected output:
 ✅ Config loaded successfully
    LangSmith project : your-project-name
    OpenAI endpoint   : https://...
-   Default LLM model : gpt-5.4-mini
+   Default LLM model : gpt-4o-mini
    Embedding model   : text-embedding-3-small
 ```
